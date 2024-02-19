@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Udemy.API.Controllers;
-using Udemy.Application.Activities;
+using Udemy.API.Extensions;
 using Udemy.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,25 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// SQLite
-builder.Services.AddDbContext<DataContext>(opt=>
-{
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-
-// Mediator
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(List.Handler).Assembly));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Create.Handler).Assembly));
-
-// Cors
-builder.Services.AddCors(opt =>
-{
-    opt.AddPolicy("CorsPolicy", policy =>
-    {
-        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
-    });
-});
+builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 
