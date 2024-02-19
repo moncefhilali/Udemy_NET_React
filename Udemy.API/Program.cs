@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Udemy.API.Controllers;
+using Udemy.Application.Activities;
 using Udemy.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,10 @@ builder.Services.AddDbContext<DataContext>(opt=>
 {
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+// Mediator
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(List.Handler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Create.Handler).Assembly));
 
 // Cors
 builder.Services.AddCors(opt =>
