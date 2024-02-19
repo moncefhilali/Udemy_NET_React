@@ -3,7 +3,7 @@ import { Button, Form, Segment } from "semantic-ui-react";
 
 export default function ActivityForm() {
   return (
-    <Segment>
+    <Segment clearing>
       <Form>
         <Form.Input placeholder="Title" />
         <Form.TextArea placeholder="Description" />
