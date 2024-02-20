@@ -28,7 +28,7 @@ namespace Udemy.API.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateActivity(Guid Id, Activity activity)
         {
             activity.Id = Id;
