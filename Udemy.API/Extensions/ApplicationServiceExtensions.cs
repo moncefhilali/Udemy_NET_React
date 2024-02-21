@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Udemy.Application.Activities;
 using Udemy.Application.Core;
 using Udemy.Persistence;
@@ -33,6 +35,10 @@ namespace Udemy.API.Extensions
 
             // AutoMapper
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+
+            // Fluent
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<Create>();
 
             return services;
         }
