@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Udemy.API.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class ActivitiesController : BaseApiController
