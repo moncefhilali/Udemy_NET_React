@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Udemy.Domain;
 using Udemy.Application.Activities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Udemy.API.Controllers
 {
