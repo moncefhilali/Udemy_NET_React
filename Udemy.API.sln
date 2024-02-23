@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.API", "Udemy.API\Udemy.API.csproj", "{5888EB1D-9D9C-4C3D-B39D-54D7DB4DAD45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Udemy.API", "Udemy.API\Udemy.API.csproj", "{5888EB1D-9D9C-4C3D-B39D-54D7DB4DAD45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Application", "Udemy.Application\Udemy.Application.csproj", "{50D85696-D4A4-401C-AA2D-4643EF921334}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Udemy.Application", "Udemy.Application\Udemy.Application.csproj", "{50D85696-D4A4-401C-AA2D-4643EF921334}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Domain", "Udemy.Domain\Udemy.Domain.csproj", "{9A6FE70B-9AC2-4945-8E98-8BBA5503A1B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Udemy.Domain", "Udemy.Domain\Udemy.Domain.csproj", "{9A6FE70B-9AC2-4945-8E98-8BBA5503A1B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Persistence", "Udemy.Persistence\Udemy.Persistence.csproj", "{4CEC2D81-10B0-479F-B6AC-36F192168F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Udemy.Persistence", "Udemy.Persistence\Udemy.Persistence.csproj", "{4CEC2D81-10B0-479F-B6AC-36F192168F85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Infrastructure", "Udemy.Infrastructure\Udemy.Infrastructure.csproj", "{77134C7A-A178-48F4-A3C5-6CB05FD7EC8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4CEC2D81-10B0-479F-B6AC-36F192168F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CEC2D81-10B0-479F-B6AC-36F192168F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CEC2D81-10B0-479F-B6AC-36F192168F85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77134C7A-A178-48F4-A3C5-6CB05FD7EC8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77134C7A-A178-48F4-A3C5-6CB05FD7EC8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77134C7A-A178-48F4-A3C5-6CB05FD7EC8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77134C7A-A178-48F4-A3C5-6CB05FD7EC8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

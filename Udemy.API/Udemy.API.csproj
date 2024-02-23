@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Udemy.Application\Udemy.Application.csproj" />
+    <ProjectReference Include="..\Udemy.Infrastructure\Udemy.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

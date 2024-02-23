@@ -3,6 +3,8 @@ using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Udemy.Application.Activities;
 using Udemy.Application.Core;
+using Udemy.Application.Interfaces;
+using Udemy.Infrastructure.Security;
 using Udemy.Persistence;
 
 namespace Udemy.API.Extensions
@@ -39,6 +41,10 @@ namespace Udemy.API.Extensions
             // Fluent
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<Create>();
+
+            //
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUserAccessor, UserAccessor>();
 
             return services;
         }
