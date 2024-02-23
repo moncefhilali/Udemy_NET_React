@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Udemy.Application.Activities;
 using Udemy.Application.Core;
 using Udemy.Application.Interfaces;
+using Udemy.Infrastructure.Photos;
 using Udemy.Infrastructure.Security;
 using Udemy.Persistence;
 
@@ -45,6 +46,11 @@ namespace Udemy.API.Extensions
             //
             services.AddHttpContextAccessor();
             services.AddScoped<IUserAccessor, UserAccessor>();
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+
+            // Cloudinary
+            services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
+
 
             return services;
         }
