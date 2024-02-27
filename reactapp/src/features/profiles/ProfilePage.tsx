@@ -13,9 +13,10 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (username) loadProfile(username);
-  }, []);
+  }, [loadProfile]);
 
-  if (loadingProfile) return <LoadingComponent content="Loading profile..." />;
+  if (loadingProfile)
+    return <LoadingComponent inverted content="Loading profile..." />;
 
   return (
     <Grid>

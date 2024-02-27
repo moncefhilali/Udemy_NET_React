@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Udemy.API.Extensions;
 using Udemy.API.Middleware;
+using Udemy.API.SignalR;
 using Udemy.Domain;
 using Udemy.Persistence;
 
@@ -44,6 +45,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// SignalR
+app.MapHub<ChatHub>("/chat");
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;

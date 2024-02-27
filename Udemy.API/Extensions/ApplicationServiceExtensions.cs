@@ -32,7 +32,11 @@ namespace Udemy.API.Extensions
             {
                 opt.AddPolicy("CorsPolicy", policy =>
                 {
-                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                    policy
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .WithOrigins("http://localhost:3000");
                 });
             });
 
@@ -51,7 +55,10 @@ namespace Udemy.API.Extensions
             // Cloudinary
             services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
 
-
+            // SignalR
+            services.AddSignalR(e => {
+                e.MaximumReceiveMessageSize = 102400000; // 100 MB
+            });
             return services;
         }
     }
