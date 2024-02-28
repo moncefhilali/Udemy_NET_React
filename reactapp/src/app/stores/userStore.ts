@@ -43,6 +43,10 @@ export default class UserStore {
     router.navigate("/");
   };
 
+  setDisplayName = (name: string) => {
+    if (this.user) this.user.displayName = name;
+  };
+
   getUser = async () => {
     try {
       const user = await agent.Account.current();
