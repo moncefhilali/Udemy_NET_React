@@ -23,7 +23,7 @@ export default observer(function ProfilePhotos({ profile }: Props) {
   const [addPhotoMode, setAddPhotoMode] = useState(false);
   const [target, setTarget] = useState("");
 
-  function handlePhotoUpload(file: Blob) {
+  function handlePhotoUpload(file: any) {
     uploadPhoto(file).then(() => setAddPhotoMode(false));
   }
 
@@ -75,8 +75,8 @@ export default observer(function ProfilePhotos({ profile }: Props) {
                         color="green"
                         content="Main"
                         name={"main" + photo.id}
-                        disabled={photo.isMain}
                         loading={target === "main" + photo.id && loading}
+                        disabled={photo.isMain}
                         onClick={(e) => handleSetMainPhoto(photo, e)}
                       />
                       <Button

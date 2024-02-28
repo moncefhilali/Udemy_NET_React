@@ -5,15 +5,19 @@ import { useParams } from "react-router-dom";
 import { useStore } from "../../app/stores/store";
 import { useEffect } from "react";
 import LoadingComponent from "../../app/layout/LoadingComponent";
+import { observer } from "mobx-react-lite";
 
-export default function ProfilePage() {
+export default observer(function ProfilePage() {
   const { username } = useParams<{ username: string }>();
   const { profileStore } = useStore();
-  const { loadingProfile, loadProfile, profile } = profileStore;
+  const { loadingProfile, loadProfile, profile, setActiveTab } = profileStore;
 
   useEffect(() => {
     if (username) loadProfile(username);
-  }, [loadProfile]);
+    return () => {
+      setActiveTab(0);
+    };
+  }, [loadProfile, username, setActiveTab]);
 
   if (loadingProfile)
     return <LoadingComponent inverted content="Loading profile..." />;
@@ -30,4 +34,4 @@ export default function ProfilePage() {
       </Grid.Column>
     </Grid>
   );
-}
+});

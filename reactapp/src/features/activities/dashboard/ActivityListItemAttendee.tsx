@@ -10,7 +10,7 @@ interface Props {
 export default function ActivityListItemAttendee({ attendees }: Props) {
   const styles = {
     borderColor: "orange",
-    borderWidth: 2,
+    borderWidth: 3,
   };
 
   return (
