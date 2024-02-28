@@ -2,6 +2,7 @@ import { makeAutoObservable, reaction, runInAction } from "mobx";
 import { Photo, Profile } from "../models/profile";
 import agent from "../api/agent";
 import { store } from "./store";
+import { toast } from "react-toastify";
 
 export default class ProfileStore {
   profile: Profile | null = null;
@@ -49,6 +50,7 @@ export default class ProfileStore {
         this.loadingProfile = false;
       });
     } catch (error) {
+      toast.error("Problem loading profile");
       console.log(error);
       runInAction(() => (this.loadingProfile = false));
     }

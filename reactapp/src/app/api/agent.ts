@@ -5,6 +5,7 @@ import { router } from "../router/Routes";
 import { store } from "../stores/store";
 import { User, UserFormValues } from "../models/user";
 import { Photo, Profile } from "../models/profile";
+import { PaginatedResult } from "../models/pagination";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -17,6 +18,14 @@ axios.defaults.baseURL = "http://localhost:5000/api";
 axios.interceptors.response.use(
   async (response) => {
     await sleep(1000);
+    const pagination = response.headers["pagination"];
+    if (pagination) {
+      response.data = new PaginatedResult(
+        response.data,
+        JSON.parse(pagination)
+      );
+      return response as AxiosResponse<PaginatedResult<unknown>>;
+    }
     return response;
   },
   (error: AxiosError) => {
@@ -61,7 +70,7 @@ axios.interceptors.response.use(
   }
 );
 
-const ResponseBody = <T>(response: AxiosResponse<T>) => response.data;
+const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 axios.interceptors.request.use((config) => {
   const token = store.commonStore.token;
@@ -70,15 +79,18 @@ axios.interceptors.request.use((config) => {
 });
 
 const requests = {
-  get: <T>(url: string) => axios.get<T>(url).then(ResponseBody),
+  get: <T>(url: string) => axios.get<T>(url).then(responseBody),
   post: <T>(url: string, body: {}) =>
-    axios.post<T>(url, body).then(ResponseBody),
-  put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(ResponseBody),
-  del: <T>(url: string) => axios.delete<T>(url).then(ResponseBody),
+    axios.post<T>(url, body).then(responseBody),
+  put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
+  del: <T>(url: string) => axios.delete<T>(url).then(responseBody),
 };
 
 const Activities = {
-  list: () => requests.get<Activity[]>("/activities"),
+  list: (params: URLSearchParams) =>
+    axios
+      .get<PaginatedResult<Activity[]>>("/activities", { params })
+      .then(responseBody),
   details: (id: string) => requests.get<Activity>(`/activities/${id}`),
   create: (activity: ActivityFormValues) =>
     requests.post<void>("/activities", activity),
