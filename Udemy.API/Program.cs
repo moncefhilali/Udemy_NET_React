@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -44,10 +45,17 @@ app.UseAuthentication();
 // Authorication #2
 app.UseAuthorization();
 
+// For Production Hosting
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapControllers();
 
 // SignalR
 app.MapHub<ChatHub>("/chat");
+
+// Fallback
+app.MapFallbackToController("Index", "Fallback");
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
